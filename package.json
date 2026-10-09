@@ -1,0 +1,28 @@
+{
+  "name": "unrivaled-stats",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:stats": "node scripts/build-stats.mjs",
+    "predev": "npm run prepare:stats",
+    "dev": "next dev --webpack --hostname 0.0.0.0",
+    "prebuild": "npm run prepare:stats",
+    "build": "next build --webpack",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@playwright/test": "^1.58.0"
+  }
+}

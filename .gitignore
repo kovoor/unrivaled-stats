@@ -1,0 +1,8 @@
+node_modules/
+.next/
+public/stats.js
+*.tsbuildinfo
+playwright-report/
+test-results/
+.env*
+.DS_Store

@@ -1,0 +1,2275 @@
+@font-face {
+    font-family: 'Sequel 100 Black';
+    src: url(/assets/asset-1.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+:root {
+    --unrivaled-icon: url('/assets/asset-2.svg');
+    --unrivaled-wordmark: url('/assets/asset-3.png');
+}
+/* ==================================================================
+   Shared foundation for the /stats/team mocks.
+   Mirrors apps/web globals.css where it matters: the ground, the ink,
+   the palette (same variable names as globals.css, so a port keeps
+   them), Roboto, line-height 1, the 60px site nav and the footer.
+
+   The real site sets `* { letter-spacing: 0.075em }`. The /arena page
+   zeroes it on its root and sets tracking per element; these mocks do
+   the same (tracking is 0 here unless an element sets its own).
+   ================================================================== */
+:root {
+    /* Ground and ink */
+    --color-black-100: #17181c;
+    --color-black-90: rgba(23, 24, 28, 0.9);
+    --color-black-80: rgba(23, 24, 28, 0.8);
+    --color-black-60: rgba(23, 24, 28, 0.6);
+    --color-white-100: #f4f4f4;
+    --color-white-92: rgba(244, 244, 244, 0.92);
+    --color-white-90: rgba(244, 244, 244, 0.9);
+    --color-white-80: rgba(244, 244, 244, 0.8);
+    --color-white-70: rgba(244, 244, 244, 0.7);
+    --color-white-60: rgba(244, 244, 244, 0.6);
+    --color-white-50: rgba(244, 244, 244, 0.5);
+    --color-white-40: rgba(244, 244, 244, 0.4);
+    --color-white-33: rgba(244, 244, 244, 0.33);
+    --color-white-25: rgba(244, 244, 244, 0.25);
+    --color-white-15: rgba(244, 244, 244, 0.15);
+    --color-white-10: rgba(244, 244, 244, 0.1);
+    --color-white-7: rgba(244, 244, 244, 0.07);
+    --color-white-5: rgba(244, 244, 244, 0.05);
+    --color-white-2: rgba(244, 244, 244, 0.02);
+    --color-slate-100: #191919;
+    --color-grey-100: #212121;
+    --color-light-grey-100: #3a3a3a;
+    --color-dark-blue-100: #1d1e26;
+
+    /* Accents (globals.css names) */
+    --color-sky-100: #5dc3ec;
+    --color-blue-100: #0090ca;
+    --color-light-blue-100: #5490ec;
+    --color-purple-100: #8502d6;
+    --color-brand-purple: #591a7e;
+    --color-light-purple-100: #c472fb;
+    --color-violet-100: #6b4a9e;
+    --color-periwinkle-100: #8a8df2;
+    --color-amethyst-100: #a65cf0;
+    --color-mint-100: #63e6be;
+    --color-gold-100: #ffc728;
+    --color-red-100: #f25c54;
+    --color-green-100: #7dd23a;
+    --color-midnight-100: #141a38;
+    --color-night-100: #0c1024;
+    --color-eggplant-100: #221c33;
+
+    /* Brand gradients (globals.css) and the faint hairline the footer and /arena use */
+    --color-unrivaled: linear-gradient(to bottom right, #5dc3ec, #591a7e);
+    --color-unrivaled-right: linear-gradient(to right, #5dc3ec, #591a7e);
+    --color-unrivaled-20: linear-gradient(to bottom right, rgba(93, 195, 236, 0.2), rgba(127, 17, 224, 0.2));
+    --hairline: linear-gradient(
+        to right,
+        transparent,
+        rgba(93, 195, 236, 0.35) 35%,
+        rgba(147, 82, 217, 0.4) 65%,
+        transparent
+    );
+
+    /* The four theme fonts, named for their job */
+    --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-heading: 'Roboto Condensed', 'Roboto', system-ui, sans-serif;
+    --font-marquee: 'Sequel 100 Black', 'Roboto', system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    --nav-h: 60px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--color-black-100);
+    color: var(--color-white-100);
+    font-family: var(--font-body);
+    line-height: 1;
+    letter-spacing: 0;
+    overflow-x: clip;
+}
+
+img,
+video,
+canvas,
+picture {
+    display: block;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-align: inherit;
+    letter-spacing: inherit;
+}
+input,
+select {
+    font: inherit;
+    color: inherit;
+    margin: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+th {
+    font-weight: inherit;
+    text-align: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+    margin: 0;
+}
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+:focus:not(:focus-visible) {
+    outline: none;
+}
+:focus-visible {
+    outline: 2px solid var(--color-light-blue-100);
+    outline-offset: 2px;
+}
+::selection {
+    background: rgba(93, 195, 236, 0.35);
+}
+[hidden] {
+    display: none !important;
+}
+
+main {
+    position: relative;
+    min-height: calc(100dvh - var(--nav-h));
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Icons from the shared sprite: <svg class="i"><use href="#i-sort"/></svg> */
+.i {
+    width: 1em;
+    height: 1em;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ------------------------------------------------------------------
+   Site nav (apps/web dynamic-nav): 60px, sticky, 90% black with blur,
+   the shield hangs below the bar at the center, signed in as "SP".
+   ------------------------------------------------------------------ */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background: var(--color-black-90);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--color-light-grey-100);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.site-nav__links {
+    display: none;
+    align-items: center;
+    height: 100%;
+}
+.site-nav__links a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+.site-nav__links a:hover {
+    color: #fff;
+}
+.site-nav__links a[data-hint]::before {
+    content: attr(data-hint);
+    position: absolute;
+    top: 12px;
+    right: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-light-blue-100);
+    text-shadow: 0 0 8px rgba(122, 63, 255, 0.7);
+}
+.site-nav__icon {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 67px;
+    background: var(--unrivaled-icon) center / contain no-repeat;
+}
+.site-nav__right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.site-nav__me {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(58, 58, 58, 0.5), rgba(33, 33, 33, 0.5));
+    border: 2px solid var(--color-white-10);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.075em;
+    user-select: none;
+}
+.site-nav__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 56px;
+    height: 100%;
+    padding: 0 18px;
+}
+.site-nav__burger span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-white-100);
+}
+@media (min-width: 1024px) {
+    .site-nav {
+        padding: 0 36px;
+    }
+    .site-nav__links {
+        display: flex;
+    }
+    .site-nav__burger {
+        display: none;
+    }
+}
+
+/* ------------------------------------------------------------------
+   Site footer (apps/web footer).
+   ------------------------------------------------------------------ */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 48px 24px 32px;
+    margin-top: 72px;
+}
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--hairline);
+    pointer-events: none;
+}
+.site-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1100px, 170vw);
+    height: 300px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(50% 100% at 38% 0%, rgba(93, 195, 236, 0.07), transparent 75%),
+        radial-gradient(50% 100% at 62% 0%, rgba(89, 26, 126, 0.18), transparent 75%);
+    pointer-events: none;
+}
+.site-footer__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.site-footer__wordmark {
+    width: 300px;
+    max-width: 80%;
+    aspect-ratio: 2000 / 223;
+    background: var(--unrivaled-wordmark) center / contain no-repeat;
+    opacity: 0.7;
+}
+.site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin-top: 32px;
+}
+.site-footer__nav a {
+    padding: 4px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-white-60);
+}
+.site-footer__nav a:hover {
+    color: var(--color-white-100);
+}
+.site-footer__rule {
+    width: 64px;
+    height: 1px;
+    margin-top: 36px;
+    background: var(--color-white-15);
+}
+.site-footer__copy {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--color-white-40);
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .site-footer {
+        padding: 64px 48px 40px;
+        margin-top: 96px;
+    }
+}
+
+/* ------------------------------------------------------------------
+   Review chrome. Not part of the design: it opens the design notes.
+   ------------------------------------------------------------------ */
+.rv {
+    position: fixed;
+    left: 12px;
+    bottom: calc(12px + var(--rv-lift, 0px));
+    z-index: 2000;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #fff;
+}
+.rv__bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 12px;
+    background: rgba(8, 8, 12, 0.92);
+    border: 1px dashed rgba(255, 255, 255, 0.28);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.7);
+}
+.rv__tag {
+    padding: 0 6px 0 4px;
+    opacity: 0.55;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 10px;
+    white-space: nowrap;
+}
+.rv__btn {
+    padding: 7px 9px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.72);
+    white-space: nowrap;
+}
+.rv__btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+.rv__btn[aria-pressed='true'] {
+    background: #fff;
+    color: #0a0a0e;
+    font-weight: 500;
+}
+.rv__sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.18);
+}
+.rv__min {
+    padding: 7px 9px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.72);
+}
+.rv__min:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+.rv[data-min='true'] .rv__bar > :not(.rv__min) {
+    display: none;
+}
+html[data-rv='0'] .rv,
+html[data-rv='0'] .rv-notes {
+    display: none !important;
+}
+@media (max-width: 720px) {
+    .rv__tag,
+    .rv__sep {
+        display: none;
+    }
+    .rv__btn,
+    .rv__min {
+        padding: 7px 7px;
+    }
+}
+@media print {
+    .rv,
+    .rv-notes {
+        display: none !important;
+    }
+}
+
+.rv-notes {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2100;
+    width: min(480px, 100vw);
+    overflow-y: auto;
+    padding: 22px 22px 40px;
+    background: #0b0b10;
+    border-left: 1px dashed rgba(255, 255, 255, 0.28);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.6);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.82);
+    transform: translateX(105%);
+    transition: transform 0.28s var(--ease);
+}
+.rv-notes[data-open='true'] {
+    transform: none;
+}
+.rv-notes__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.rv-notes__kicker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+}
+.rv-notes__close {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 9px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.rv-notes h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 6px;
+}
+.rv-notes h3 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-sky-100);
+    margin: 22px 0 8px;
+}
+.rv-notes p {
+    margin-bottom: 10px;
+}
+.rv-notes ul,
+.rv-notes ol {
+    padding-left: 18px;
+}
+.rv-notes ul {
+    list-style: disc;
+}
+.rv-notes ol {
+    list-style: decimal;
+}
+.rv-notes li {
+    margin-bottom: 7px;
+}
+.rv-notes b,
+.rv-notes strong {
+    color: #fff;
+    font-weight: 600;
+}
+.rv-notes code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ================= Option 1e: One Track, container ================= */
+/* ==================================================================
+   Filters 1: One Track. Every filter lives in one glass capsule as a
+   menu segment: its value and a chevron, hairlines between segments,
+   one height, one material, one selected look (the glass thumb). The
+   capsule wraps by segment when its container is narrow and keeps its
+   radius. Solid white is spent once per view, on the table's answer.
+   The table is Box Office unchanged.
+   Breakpoints follow apps/web: --sm 768, --md 1024, --lg 1200.
+   ================================================================== */
+.bo {
+    position: relative;
+    line-height: 1.5;
+    padding-bottom: 8px;
+    -webkit-tap-highlight-color: transparent;
+}
+.bo * {
+    letter-spacing: 0;
+}
+.wrap {
+    width: 100%;
+    max-width: 1272px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ---------- The track: one glass capsule. Tabs, filters, and the phone stat picker all use it ---------- */
+.track {
+    --seg-h: 44px;
+    --seg-pad: 16px;
+    --rule: var(--color-white-10);
+    --thumb: linear-gradient(180deg, rgba(244, 244, 244, 0.17), rgba(244, 244, 244, 0.11));
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: 100%;
+    border-radius: 23px;
+    /* Rows are one segment tall, so the hairline between rows is a background stripe at every row height
+     after the first. It starts one row down, which leaves a single-row capsule without a line. */
+    background-color: var(--color-white-5);
+    background-image: repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px var(--seg-h));
+    background-size: calc(100% - 32px) 100%;
+    background-position: 16px var(--seg-h);
+    background-repeat: no-repeat;
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 0;
+    /* Clips the hairline that leads each row, so a divider only ever shows between two groups. */
+    overflow: clip;
+}
+/* The rim light, the same masked gradient as the paper. */
+.track::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        160deg,
+        rgba(244, 244, 244, 0.2),
+        rgba(244, 244, 244, 0.08) 40%,
+        rgba(244, 244, 244, 0.06) 70%,
+        rgba(244, 244, 244, 0.14)
+    );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* A slot holds one filter. The divider before it is clipped when the slot starts a row. */
+.slot {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.slot::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 13px;
+    bottom: 13px;
+    width: 1px;
+    background: var(--rule);
+    pointer-events: none;
+}
+
+/* A segment fills the row's height; the thumb is drawn inset, so the tap target is the whole row. */
+.seg {
+    position: relative;
+    z-index: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: var(--seg-h);
+    padding: 0 var(--seg-pad);
+    border-radius: 9999px;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--color-white-60);
+    transition: color 0.2s var(--ease);
+}
+.seg::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 4px;
+    border-radius: inherit;
+    background: var(--thumb);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 1px 2px rgba(0, 0, 0, 0.28),
+        0 6px 14px -8px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+        opacity 0.2s var(--ease),
+        transform 0.2s var(--ease);
+}
+.seg:focus-visible {
+    outline: 2px solid var(--color-light-blue-100);
+    outline-offset: -3px;
+}
+@media (hover: hover) {
+    .seg:hover {
+        color: var(--color-white-92);
+    }
+    .seg:hover::before {
+        opacity: 0.2;
+        transform: none;
+    }
+}
+/* The one selected look: the glass thumb under white text. A pressed stat, the current tab, an open menu. */
+.seg[aria-pressed='true'],
+.seg[aria-current='page'],
+.seg[aria-expanded='true'] {
+    color: var(--color-white-100);
+}
+.seg[aria-pressed='true']::before,
+.seg[aria-current='page']::before,
+.seg[aria-expanded='true']::before {
+    opacity: 1;
+    transform: none;
+}
+
+/* A menu segment: its value and a chevron. The value is always white, since it is always the current one. */
+.seg--menu {
+    color: var(--color-white-100);
+    padding-right: calc(var(--seg-pad) - 2px);
+}
+/* The options share one grid cell: the segment keeps its widest option's width whichever is showing. */
+.seg__value {
+    display: grid;
+    min-width: 0;
+    overflow: hidden;
+}
+.seg__opt {
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    white-space: nowrap;
+    visibility: hidden;
+}
+.seg__opt[data-on='true'] {
+    visibility: visible;
+}
+.seg__logo {
+    width: 20px;
+    height: 20px;
+    flex: none;
+}
+.seg__chev {
+    font-size: 14px;
+    color: var(--color-white-50);
+    transition:
+        transform 0.2s var(--ease),
+        color 0.2s var(--ease);
+}
+.seg--menu[aria-expanded='true'] .seg__chev {
+    transform: rotate(180deg);
+    color: var(--color-white-80);
+}
+
+/* ---------- The glass menu ---------- */
+.filters {
+    position: relative;
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+.pop {
+    position: absolute;
+    z-index: 60;
+    top: 0;
+    left: 0;
+    min-width: 220px;
+    max-height: min(440px, 70vh);
+    overflow-y: auto;
+    padding: 6px;
+    border-radius: 20px;
+    background: rgba(28, 29, 34, 0.94);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow:
+        inset 0 0 0 1px var(--color-white-15),
+        0 24px 48px -16px rgba(0, 0, 0, 0.8),
+        0 2px 10px rgba(0, 0, 0, 0.35);
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--color-white-100);
+    scrollbar-width: thin;
+}
+.pop__item {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px 0 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-white-80);
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+.pop__item:hover,
+.pop__item:focus-visible {
+    background: var(--color-white-7);
+    color: var(--color-white-100);
+    outline: none;
+}
+.pop__item:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--color-light-blue-100);
+}
+/* The checked item sits on the same glass thumb as a pressed segment. */
+.pop__item[aria-checked='true'] {
+    background: var(--thumb, rgba(244, 244, 244, 0.14));
+    color: var(--color-white-100);
+}
+/* An option that cannot be chosen here stays listed, dimmed, so the menu reads the same on every page. */
+.pop__item[aria-disabled='true'] {
+    color: var(--color-white-33);
+    cursor: default;
+}
+.pop__item[aria-disabled='true']:hover {
+    background: none;
+    color: var(--color-white-33);
+}
+.pop__item[aria-disabled='true'] .pop__sub,
+.pop__item[aria-disabled='true'] .pop__logo {
+    opacity: 0.45;
+}
+.pop__note {
+    max-width: 280px;
+    padding: 8px 14px 8px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--color-white-50);
+    text-wrap: pretty;
+}
+.pop__main {
+    white-space: nowrap;
+}
+.pop__sub {
+    flex: 1;
+    color: var(--color-white-50);
+    font-weight: 400;
+    white-space: nowrap;
+}
+.pop__main:last-of-type {
+    flex: 1;
+}
+.pop__item .i {
+    font-size: 15px;
+    opacity: 0;
+}
+.pop__item[aria-checked='true'] .i {
+    opacity: 1;
+}
+.pop__logo {
+    width: 22px;
+    height: 22px;
+    flex: none;
+}
+.pop__logo--league {
+    background: var(--unrivaled-icon) center / contain no-repeat;
+}
+.pop__label {
+    padding: 10px 14px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white-50);
+}
+.pop__rule {
+    height: 1px;
+    margin: 6px 10px;
+    background: var(--color-white-10);
+}
+.pop {
+    --thumb: linear-gradient(180deg, rgba(244, 244, 244, 0.15), rgba(244, 244, 244, 0.1));
+}
+
+/* ---------- Page tabs: the same track, links for segments ---------- */
+.tabs {
+    display: flex;
+    width: 100%;
+    margin: 16px 0 0;
+}
+.tabs .seg {
+    flex: 1 1 0;
+    padding: 0 10px;
+}
+
+/* ---------- Page head: the title and the track share a row while they fit ---------- */
+.head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 24px;
+    margin: 20px 0 12px;
+}
+.head__title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 44px;
+}
+.title {
+    margin-right: auto;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+}
+
+/* Reset: it keeps its place when hidden, so appearing never moves the track. */
+.reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+    height: 44px;
+    padding: 0 2px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-white-60);
+    white-space: nowrap;
+    transition:
+        color 0.15s ease,
+        opacity 0.2s var(--ease),
+        visibility 0s;
+}
+.reset .i {
+    font-size: 15px;
+}
+.reset:hover {
+    color: var(--color-white-100);
+}
+.reset[data-on='false'] {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.2s var(--ease),
+        visibility 0s 0.2s;
+}
+
+/* ---------- The glass paper ---------- */
+.paper {
+    /* What the glass resolves to on the page, sampled, for the pinned cells that must be opaque. */
+    --paper-solid: rgb(33, 35, 41);
+    position: relative;
+    border-radius: 16px;
+    background: var(--color-white-5);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+    padding: 0 16px;
+}
+/* The 1px rim light, drawn as a masked gradient. */
+.paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        155deg,
+        rgba(244, 244, 244, 0.24),
+        rgba(244, 244, 244, 0.06) 28%,
+        rgba(244, 244, 244, 0.04) 68%,
+        rgba(244, 244, 244, 0.14)
+    );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+/* The brand hairline on the top edge, as on the arena box office. */
+.paper::after {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    left: 12%;
+    right: 12%;
+    top: 0;
+    height: 1px;
+    background: var(--hairline);
+    pointer-events: none;
+}
+.scroll {
+    position: relative;
+}
+.pinEdge {
+    display: none;
+}
+
+/* ---------- The table (Box Office, unchanged) ---------- */
+.stats {
+    /* A league-best pill reaches this far into its cell's padding, inside it, so two pills in neighboring columns
+     never touch. The pill is a rounded square at every size: its corner scales with its height. */
+    --pill-x: 6px;
+    --pill-r: 7px;
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+}
+.stats th,
+.stats td {
+    text-align: right;
+    font-weight: 400;
+    vertical-align: middle;
+}
+.stats caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.stats thead th {
+    position: relative;
+    padding: 18px 16px 13px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-white-50);
+    border-bottom: 1px solid var(--color-white-10);
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+.stats thead th::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-white-100);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+.stats thead th[aria-sort='ascending'],
+.stats thead th[aria-sort='descending'] {
+    color: var(--color-white-100);
+}
+.stats thead th[aria-sort='ascending']::before,
+.stats thead th[aria-sort='descending']::before {
+    opacity: 0.85;
+}
+.sortBtn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    width: 100%;
+    min-height: 20px;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+/* The whole header cell sorts, not just the label's line: the button lays a transparent hit area over its cell. */
+.sortBtn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+.sortBtn .i {
+    font-size: 12px;
+    stroke-width: 2.25;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+.stats thead th:hover .sortBtn {
+    color: var(--color-white-100);
+}
+.stats thead th:hover .sortBtn .i {
+    opacity: 0.5;
+}
+.stats thead th[aria-sort='ascending'] .sortBtn .i,
+.stats thead th[aria-sort='descending'] .sortBtn .i {
+    opacity: 1;
+}
+.stats thead .rk,
+.stats thead .who,
+.stats thead .gp {
+    cursor: default;
+}
+
+.stats tbody th,
+.stats tbody td {
+    padding: 12px 16px;
+    font-size: 15px;
+    line-height: 1;
+    color: var(--color-white-90);
+}
+.stats tbody tr.row + tr.row > * {
+    border-top: 1px solid var(--color-white-10);
+}
+.stats .rk {
+    width: 56px;
+    text-align: left;
+    white-space: nowrap;
+}
+/* The tie mark: a small raised T after the rank, in the rank's own color but lighter, with no height of its own. */
+.rankTied {
+    white-space: nowrap;
+}
+.tie {
+    position: relative;
+    top: -0.5em;
+    margin-left: 1px;
+    font-size: 0.64em;
+    font-weight: 600;
+    line-height: 0;
+    vertical-align: baseline;
+    letter-spacing: 0.02em;
+    color: inherit;
+    opacity: 0.6;
+}
+.stats .who {
+    text-align: left;
+}
+.stats .gp {
+    width: 60px;
+}
+/* The rank and GP cells are quieter than the stats, in the body only: the heads keep the head's size and color. */
+.stats tbody .rk,
+.stats tfoot .rk,
+.stats tbody .gp,
+.stats tfoot .gp {
+    font-size: 14px;
+    color: var(--color-white-60);
+}
+.stats [data-sorted='true'] {
+    background: var(--color-white-5);
+}
+.stats tbody [data-sorted='true'] {
+    color: var(--color-white-100);
+    font-weight: 500;
+}
+/* The band marks the ranked block, head and rows. The League average is a reference line under it, so it keeps
+   only a brighter value in the sorted column. */
+.stats tfoot [data-sorted='true'] {
+    background: none;
+    color: var(--color-white-90);
+    font-weight: 500;
+}
+/* No cell fades its background: a row lights up in one beat, the name with the numbers.
+   A row lights under a pointer only. A finger gets a press state instead, since touch leaves hover stuck on the last row tapped. */
+@media (hover: hover) {
+    .stats tbody tr.row:hover > * {
+        background: var(--color-white-7);
+    }
+    .stats tbody tr.row:hover > [data-sorted='true'] {
+        background: var(--color-white-10);
+    }
+}
+@media (hover: none) {
+    .stats tbody tr.row {
+        transition: background-color 0.35s var(--ease);
+    }
+    .stats tbody tr.row:active {
+        background: var(--color-white-5);
+        transition: none;
+    }
+}
+
+.club {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    min-height: 28px;
+    font-weight: 500;
+    color: var(--color-white-100);
+}
+.club img {
+    width: 28px;
+    height: 28px;
+    flex: none;
+}
+.club__name {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.club:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-white-40);
+}
+.club--still {
+    cursor: default;
+}
+.club--still:hover {
+    text-decoration: none;
+}
+
+/* A value, and the calendar-day pill around a league best. The negative margin cancels the padding,
+   so a pilled number sits exactly where a plain one does and the decimals stay in line. */
+.v {
+    display: inline-block;
+    height: 28px;
+    padding: 0 var(--pill-x);
+    margin: 0 calc(-1 * var(--pill-x));
+    border-radius: var(--pill-r);
+    line-height: 28px;
+}
+.v--lead {
+    background: var(--color-white-10);
+    font-weight: 600;
+    color: var(--color-white-100);
+}
+/* The page's one solid white: the league best in the sorted stat. */
+.v--top {
+    background: var(--color-white-100);
+    color: var(--color-black-100);
+    font-weight: 700;
+}
+.v--dim {
+    color: var(--color-white-40);
+}
+.none {
+    display: inline-block;
+    width: 12px;
+    height: 1.5px;
+    border-radius: 1px;
+    background: var(--color-white-25);
+    vertical-align: middle;
+}
+
+.stats tfoot th,
+.stats tfoot td {
+    padding: 14px 16px 10px;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--color-white-60);
+    border-top: 1px solid var(--color-white-15);
+}
+.stats tfoot th {
+    text-align: left;
+    font-weight: 500;
+}
+
+.flip {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-white-15);
+    color: var(--color-white-80);
+    transition:
+        border-color 0.15s ease,
+        background-color 0.15s ease;
+}
+.flip:hover {
+    border-color: var(--color-white-50);
+    background: var(--color-white-5);
+}
+.flip .i {
+    font-size: 17px;
+}
+.stats .more,
+.stats .line,
+.listHead,
+.pickWrap {
+    display: none;
+}
+
+/* ---------- Empty states ---------- */
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 56px 20px 60px;
+    text-align: center;
+}
+.empty__title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+}
+.empty__body {
+    max-width: 28em;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-white-60);
+    text-wrap: pretty;
+}
+/* The empty state's way out is a glass button, not a white one: solid white stays the table's. */
+.action {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 44px;
+    margin-top: 12px;
+    padding: 0 20px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(244, 244, 244, 0.17), rgba(244, 244, 244, 0.11));
+    box-shadow:
+        inset 0 0 0 1px var(--color-white-15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 6px 14px -8px rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-white-100);
+    white-space: nowrap;
+    transition:
+        background-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
+}
+.action:hover {
+    box-shadow:
+        inset 0 0 0 1px var(--color-white-33),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 6px 14px -8px rgba(0, 0, 0, 0.7);
+}
+.action:active {
+    transform: scale(0.98);
+}
+.action .i {
+    font-size: 15px;
+}
+
+/* ---------- Leaders: the top five in each stat, on cards in two groups ---------- */
+/* On the phone the head keeps only a small margin, since the other tabs' picker band spaces the paper below it;
+   there is no band here, so the groups bring their own, which collapses with the head's to the desktop's 24px. */
+.leaders {
+    display: grid;
+    gap: 28px;
+    margin-top: 24px;
+}
+.group {
+    display: grid;
+    gap: 12px;
+}
+.group__name {
+    padding: 0 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-white-50);
+}
+.group__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+}
+/* A card is the paper's material at a smaller size; its pills are the tables' 24px rounded squares. */
+.lead {
+    --pill-x: 5px;
+    --pill-r: 6px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 0 16px 4px;
+    background: var(--color-white-5);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+}
+.lead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        155deg,
+        rgba(244, 244, 244, 0.24),
+        rgba(244, 244, 244, 0.06) 28%,
+        rgba(244, 244, 244, 0.04) 68%,
+        rgba(244, 244, 244, 0.14)
+    );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+.lead__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 46px;
+    padding: 15px 0 12px;
+    border-bottom: 1px solid var(--color-white-10);
+}
+.lead__name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--color-white-100);
+}
+.lead__abbr {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-white-50);
+}
+.lead__list {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.lead__row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 4px 0;
+}
+.lead__row + .lead__row {
+    border-top: 1px solid var(--color-white-10);
+}
+.lead__rank {
+    flex: none;
+    width: 24px;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--color-white-50);
+    white-space: nowrap;
+}
+/* Where the headshot goes: the player's initials on a glass disc, ringed in her club's color. */
+.lead__avatar {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-white-7);
+    box-shadow: 0 0 0 1.5px var(--club, var(--color-white-25));
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: var(--color-white-80);
+}
+.lead__who {
+    flex: 1 1 auto;
+    display: grid;
+    align-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 44px;
+}
+.lead__player {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-white-100);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.lead__who:hover .lead__player {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-white-40);
+}
+.lead__club {
+    font-size: 12px;
+    line-height: 1;
+    color: var(--color-white-50);
+}
+.lead__value {
+    flex: none;
+    font-size: 15px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-white-90);
+}
+.lead .v {
+    height: 24px;
+    line-height: 24px;
+}
+.lead__foot {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 2px;
+    border-top: 1px solid var(--color-white-10);
+}
+.lead__all {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 44px;
+    margin: 0 -4px;
+    padding: 0 4px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-white-70);
+    transition: color 0.15s ease;
+}
+.lead__all:hover {
+    color: var(--color-white-100);
+}
+.lead__all .i {
+    font-size: 14px;
+}
+.lead__empty {
+    padding: 24px 0 28px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-white-50);
+    text-wrap: pretty;
+}
+@media (min-width: 768px) {
+    .leaders {
+        gap: 32px;
+        margin-top: 0;
+    }
+    .group {
+        gap: 14px;
+    }
+    .group__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+@media (min-width: 1200px) {
+    .group__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* ---------- Under the paper ---------- */
+.foot {
+    display: grid;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 0 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-white-50);
+}
+.foot__note {
+    text-wrap: pretty;
+}
+.abbr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 14px;
+    margin-top: 4px;
+}
+.abbr div {
+    display: inline-flex;
+    gap: 6px;
+    white-space: nowrap;
+}
+.abbr dt {
+    font-weight: 600;
+    color: var(--color-white-70);
+}
+.abbr dd {
+    color: var(--color-white-50);
+}
+
+/* ---------- Motion: the paper rises once, a menu drops in. Never in static mode or under reduced motion ---------- */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes drop {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@media (prefers-reduced-motion: no-preference) {
+    html:not(.is-static) .paper {
+        animation: rise 0.3s var(--ease) both;
+    }
+    html:not(.is-static) .pop:not([hidden]) {
+        animation: drop 0.16s var(--ease) both;
+        transform-origin: top center;
+    }
+}
+/* None rather than a tiny duration: a near-zero transition still delays what a script reads back, like a menu's width. */
+@media (prefers-reduced-motion: reduce) {
+    .bo *,
+    .bo *::before,
+    .bo *::after,
+    .demo *,
+    .demo *::before,
+    .demo *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+html.is-static .bo *,
+html.is-static .bo *::before,
+html.is-static .bo *::after,
+html.is-static .demo *,
+html.is-static .demo *::before,
+html.is-static .demo *::after {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* ==================================================================
+   Phone (under 768px): the track folds into two rows of menus; the
+   table unrolls into rows that show the stat the sticky picker chose.
+   ================================================================== */
+@media (max-width: 767px) {
+    .track {
+        --seg-pad: 12px;
+    }
+    .head {
+        margin: 22px 0 6px;
+        gap: 10px 16px;
+    }
+    .head .filters {
+        flex: 1 1 100%;
+    }
+    /* With no picker band (an empty state), the paper keeps the same gap below the track. */
+    .pickWrap[hidden] + .paper {
+        margin-top: 18px;
+    }
+    .head .track {
+        flex: 1 1 auto;
+    }
+    .pop__item {
+        height: 44px;
+    }
+
+    /* The band starts at the nav and pads its top so the shield hanging below the nav never covers a pill. */
+    .pickWrap {
+        display: block;
+        position: sticky;
+        top: var(--nav-h);
+        z-index: 20;
+        margin: 0 -16px 10px;
+        padding: 20px 16px 10px;
+        background: var(--color-black-90);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        backdrop-filter: blur(24px) saturate(180%);
+    }
+    /* The picker is the table's, not a filter: its segments sit on the band without a capsule of their own. */
+    .pickTrack {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        margin: 0 -4px;
+        width: calc(100% + 8px);
+        background: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        border-radius: 0;
+        overflow: visible;
+    }
+    .pickTrack::after {
+        display: none;
+    }
+    .pick {
+        display: flex;
+        flex: 1 1 auto;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+    }
+    .pick::-webkit-scrollbar {
+        display: none;
+    }
+    .pick .seg {
+        flex: none;
+        padding: 0 15px;
+        scroll-snap-align: center;
+    }
+    .pick[data-fade='end'] {
+        -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 44px), rgba(0, 0, 0, 0.3));
+        mask-image: linear-gradient(to right, #000 calc(100% - 44px), rgba(0, 0, 0, 0.3));
+    }
+    .pick[data-fade='start'] {
+        -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), #000 44px);
+        mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), #000 44px);
+    }
+    .pick[data-fade='both'] {
+        -webkit-mask-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.3),
+            #000 44px,
+            #000 calc(100% - 44px),
+            rgba(0, 0, 0, 0.3)
+        );
+        mask-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.3),
+            #000 44px,
+            #000 calc(100% - 44px),
+            rgba(0, 0, 0, 0.3)
+        );
+    }
+
+    .listHead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0 6px;
+    }
+    .listHead__name {
+        display: flex;
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 8px;
+        font-size: 15px;
+        line-height: 1.3;
+    }
+    .listHead__name b {
+        font-weight: 600;
+    }
+    .listHead__name span {
+        font-size: 13px;
+        color: var(--color-white-50);
+    }
+
+    .stats,
+    .stats tbody,
+    .stats tfoot {
+        display: block;
+    }
+    .stats thead {
+        display: none;
+    }
+    .stats tbody tr.row,
+    .stats tfoot tr {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 56px;
+        padding: 6px 0;
+        border-top: 1px solid var(--color-white-10);
+    }
+    .stats tbody tr.row {
+        position: relative;
+    }
+    .stats tbody tr.row > *,
+    .stats tfoot tr > * {
+        display: block;
+        padding: 0;
+        border: 0;
+        background: none;
+        width: auto;
+    }
+    .stats tbody tr.row + tr.row > * {
+        border-top: 0;
+    }
+    /* A fixed basis, since the phone resets every cell's width: wide enough for a tie ("T-14"), so the crest and
+     the name start at the same place in every row. */
+    .stats .rk {
+        flex: 0 0 34px;
+        font-size: 14px;
+    }
+    .stats .who {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    .stats tbody tr.row > .gp {
+        display: none;
+    }
+    .stats tbody tr.row > td[data-col]:not([data-sorted='true']),
+    .stats tfoot tr > td[data-col]:not([data-sorted='true']) {
+        display: none;
+    }
+    .stats tbody tr.row > td[data-sorted='true'],
+    .stats tfoot tr > td[data-sorted='true'] {
+        flex: none;
+        padding-right: 6px;
+    }
+    .stats tbody [data-sorted='true'] {
+        background: none;
+        font-weight: 500;
+    }
+    @media (hover: hover) {
+        .stats tbody tr.row:hover > *,
+        .stats tbody tr.row:hover > [data-sorted='true'] {
+            background: none;
+        }
+    }
+    /* The rows' 44px name block with 6px each side and the hairline: the footer sits on the same height. */
+    .stats tfoot tr {
+        min-height: 57px;
+        color: var(--color-white-60);
+    }
+    .stats tfoot tr > .more {
+        display: block;
+        width: 40px;
+        margin-right: -8px;
+    }
+
+    .stats .more {
+        display: block;
+        flex: none;
+    }
+    .open {
+        position: static;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        margin-right: -8px;
+        border-radius: 50%;
+        color: var(--color-white-50);
+        transition: color 0.15s ease;
+    }
+    .open::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+    .open .i {
+        font-size: 18px;
+        transition: transform 0.2s var(--ease);
+    }
+    .open[aria-expanded='true'] {
+        color: var(--color-white-100);
+    }
+    .open[aria-expanded='true'] .i {
+        transform: rotate(180deg);
+    }
+    /* The row is one target: the name sits under the open button's overlay too, so a tap anywhere expands the
+     line, where the club page link lives. */
+    .club {
+        display: flex;
+        min-height: 44px;
+    }
+    .club img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .stats .line {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.22s var(--ease);
+    }
+    .stats .line > td {
+        display: block;
+        min-height: 0;
+        overflow: hidden;
+        padding: 0;
+        border: 0;
+        text-align: left;
+        visibility: hidden;
+        transition: visibility 0s 0.22s;
+    }
+    .stats .line[data-open='true'] {
+        grid-template-rows: 1fr;
+    }
+    .stats .line[data-open='true'] > td {
+        visibility: visible;
+        transition-delay: 0s;
+    }
+    /* The line's grid starts under the crest. */
+    .lineBox {
+        padding: 4px 0 16px 44px;
+    }
+    .lineGrid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px 8px;
+        margin: 0;
+    }
+    .lineGrid div {
+        min-width: 0;
+    }
+    .lineGrid dt {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1;
+        color: var(--color-white-50);
+    }
+    .lineGrid dd {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 20px;
+        margin: 6px 0 0;
+        font-size: 16px;
+        line-height: 1;
+        color: var(--color-white-90);
+    }
+    .lineVal--dim {
+        color: var(--color-white-40);
+    }
+    /* The rank is where the league-best mark goes here: a quiet tag when the club leads the league in the stat,
+     white when that stat is also the sorted one, so the values stay plain and aligned. */
+    .lineRank {
+        font-size: 12px;
+        line-height: 1;
+        color: var(--color-white-50);
+        white-space: nowrap;
+    }
+    .lineRank--lead,
+    .lineRank--top {
+        display: inline-flex;
+        align-items: center;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+    .lineRank--lead {
+        background: var(--color-white-10);
+        color: var(--color-white-100);
+    }
+    .lineRank--top {
+        background: var(--color-white-100);
+        color: var(--color-black-100);
+        font-weight: 700;
+    }
+    .lineGrid [data-sorted='true'] dd {
+        color: var(--color-white-100);
+        font-weight: 500;
+    }
+    .lineFoot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 14px;
+        margin-top: 14px;
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--color-white-50);
+    }
+    .lineFoot a {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        min-height: 44px;
+        font-weight: 500;
+        color: var(--color-white-100);
+    }
+    .lineFoot a .i {
+        font-size: 14px;
+        color: var(--color-sky-100);
+    }
+
+    .foot {
+        padding: 0 2px;
+    }
+}
+/* A small phone. */
+@media (max-width: 374px) {
+    .title {
+        font-size: 30px;
+    }
+}
+/* A narrow container (a small phone, a card on a phone): the track tightens so two menus still share
+   a row. The query is on the block that holds the head, never on the head itself, so the head stays
+   out of a stacking context of its own and its menus overlay the paper. */
+.panel,
+.demo__frame {
+    container: filters / inline-size;
+}
+@container filters (width < 344px) {
+    .track {
+        --seg-pad: 10px;
+        font-size: 12.5px;
+    }
+}
+
+/* ==================================================================
+   Tablet and up (768px): the table is a table again, the tabs hug
+   their labels, the title grows to balance the track.
+   ================================================================== */
+@media (min-width: 768px) {
+    .wrap {
+        padding: 0 36px;
+    }
+    .tabs {
+        display: inline-flex;
+        width: auto;
+        margin: 24px 0 0;
+    }
+    .tabs .seg {
+        flex: none;
+        padding: 0 18px;
+    }
+    .head {
+        margin: 26px 0 24px;
+    }
+    .title {
+        font-size: 40px;
+    }
+    .paper {
+        border-radius: 18px;
+        padding: 8px 12px 12px;
+    }
+    /* One table, whatever it holds: 13px values, 9px around a 24px crest and pill under 11px heads, a 188px name
+     column, and stat columns that share the paper's width equally, each at least 47px. The table's minimum
+     width comes from the same count, so nine stat columns fill the paper and twenty exceed it and scroll, with
+     the rank and name pinned. The table is told its stat column count and its fixed width in --cols and --fixed. */
+    .scroll {
+        container-type: inline-size;
+    }
+    .stats {
+        table-layout: fixed;
+        --pill-x: 5px;
+        --pill-r: 6px;
+        min-width: calc(var(--fixed, 236px) + var(--cols, 20) * 47px);
+        /* A column's room, read from the scroller's width, and the side padding that room allows: 6px at the 47px
+       minimum, growing to 16px as columns widen, so a value never hugs the edge of a wide column. */
+        --col-w: calc((100cqw - var(--fixed, 236px)) / var(--cols, 20));
+        --cell-x: clamp(6px, calc((var(--col-w) - 36px) / 2), 16px);
+    }
+    /* 13px above the label and 12px below, with the hairline, puts the head on the rows' 46px beat. */
+    .stats thead th {
+        padding: 13px var(--cell-x) 12px;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+    }
+    .stats thead th::before {
+        left: var(--cell-x);
+        right: var(--cell-x);
+    }
+    .stats tbody th,
+    .stats tbody td {
+        padding: 9px var(--cell-x);
+        font-size: 13px;
+    }
+    .stats tbody .rk,
+    .stats tfoot .rk,
+    .stats tbody .gp,
+    .stats tfoot .gp {
+        font-size: 13px;
+    }
+    /* A row is 9px around the name block's 28px; the footer has only its 24px value box, so 11px above and 10px below,
+     with the hairline, puts it on the same 46px and its numbers at the same height as the rows'. */
+    .stats tfoot th,
+    .stats tfoot td {
+        padding: 11px var(--cell-x) 10px;
+        font-size: 13px;
+    }
+    .stats .rk {
+        width: 48px;
+        padding-left: 12px;
+    }
+    .stats .who {
+        width: 188px;
+        padding-left: 4px;
+        padding-right: 6px;
+    }
+    .stats .gp {
+        width: 44px;
+    }
+    .club {
+        gap: 8px;
+    }
+    .club img {
+        width: 24px;
+        height: 24px;
+    }
+    .v {
+        height: 24px;
+        line-height: 24px;
+    }
+    .foot {
+        margin-top: 18px;
+    }
+}
+
+/* ---------- A table wider than its paper scrolls, with the rank and name pinned. Twenty columns are, below the
+   page's widest; nine are only on a narrow tablet in totals, with the GP column ---------- */
+@media (min-width: 768px) {
+    .paper--wide .scroll {
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+    .paper--wide {
+        --pin-w: 236px;
+    }
+    .stats .rk,
+    .stats .who {
+        position: sticky;
+        z-index: 1;
+        background-color: transparent;
+    }
+    .stats .rk {
+        left: 0;
+    }
+    .stats .who {
+        left: 48px;
+    }
+    .paper[data-scrolled='true'] .stats .rk,
+    .paper[data-scrolled='true'] .stats .who {
+        background-color: var(--paper-solid);
+    }
+    /* The pinned columns are plain cells until the stats scroll under them. Then they take the paper's own color,
+     and one edge, a hairline and a soft shadow, is drawn once over the paper for the whole column, never per
+     cell: a shadow on each cell would bleed into the rows above and below it. */
+    .paper[data-scrolled='true'] .pinEdge {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        top: 8px;
+        bottom: 12px;
+        left: calc(12px + var(--pin-w));
+        width: 18px;
+        pointer-events: none;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+        box-shadow: inset 1px 0 0 var(--color-white-10);
+    }
+    @media (hover: hover) {
+        .paper[data-scrolled='true'] .stats tbody tr.row:hover > .rk,
+        .paper[data-scrolled='true'] .stats tbody tr.row:hover > .who {
+            background-image: linear-gradient(var(--color-white-7), var(--color-white-7));
+        }
+    }
+    /* The columns add up to the paper's width at the page's widest, so the table fits there and scrolls below it,
+     never past the paper's edge. */
+}
+
+/* ==================================================================
+   Elsewhere: the live demos in the notes drawer. Each frame is a
+   stand-in for the card the component lives in on another page.
+   ================================================================== */
+.demo {
+    margin: 6px 0 18px;
+}
+.rv-notes .demo p {
+    margin: 0;
+}
+.demo__ctx {
+    margin: 0 0 8px !important;
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.55);
+}
+.demo__frame {
+    position: relative;
+    padding: 12px 12px 14px;
+    border-radius: 18px;
+    background: var(--color-white-2);
+    box-shadow: inset 0 0 0 1px var(--color-white-10);
+    line-height: 1;
+}
+.demo .head {
+    margin: 0;
+    gap: 12px;
+}
+.demo .head__title {
+    min-height: 44px;
+}
+.demo__title {
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--color-white-100);
+}
+.demo__h {
+    margin-right: auto;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--color-white-100);
+}
+.demo__player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--color-white-10);
+}
+.demo__player img {
+    width: 36px;
+    height: 36px;
+}
+.demo__player b {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-white-100);
+}
+.demo__player span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--color-white-50);
+}
+.demo__said {
+    margin-top: 12px !important;
+    font-size: 12px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.5);
+    font-variant-numeric: tabular-nums;
+}
