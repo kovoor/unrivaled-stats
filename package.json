@@ -4,10 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare:stats": "node scripts/build-stats.mjs",
-    "predev": "npm run prepare:stats",
     "dev": "next dev --webpack --hostname 0.0.0.0",
-    "prebuild": "npm run prepare:stats",
     "build": "next build --webpack",
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
