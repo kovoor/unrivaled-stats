@@ -1,16 +1,15 @@
 import Script from 'next/script';
 import { IconSprite } from '@/components/IconSprite';
 import { SiteHeader } from '@/components/SiteHeader';
-import { StatsPanels } from '@/components/StatsPanels';
 import { SiteFooter } from '@/components/SiteFooter';
 import { DesignNotes } from '@/components/DesignNotes';
 
-export default function StatsPage() {
+export default function StatsLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <>
             <IconSprite />
             <SiteHeader />
-            <StatsPanels />
+            {children}
             <SiteFooter />
             <DesignNotes />
             <noscript>

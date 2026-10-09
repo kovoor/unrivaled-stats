@@ -1,7 +1,15 @@
 import { PanelHeader } from '@/components/stats/PanelHeader';
 import { StatTable } from '@/components/stats/StatTable';
+import type { StatsTab } from '@/components/stats/types';
 
-export function StatsPanels() {
+const TAB_LINKS: { tab: StatsTab; href: string; label: string }[] = [
+    { tab: 'leaders', href: '/stats', label: 'Leaders' },
+    { tab: 'player', href: '/stats/player', label: 'Player Stats' },
+    { tab: 'team', href: '/stats/team', label: 'Team Stats' },
+];
+
+// Every panel stays in the DOM: stats.js switches tabs on the client. `tab` only picks the first paint.
+export function StatsPanels({ tab }: { tab: StatsTab }) {
     return (
         <main>
             <svg
@@ -20,18 +28,20 @@ export function StatsPanels() {
             <div className={'bo'}>
                 <div className={'wrap'}>
                     <nav className={'track tabs'} aria-label={'Stats'}>
-                        <a className={'seg'} data-tab={'leaders'} href={'/stats'}>
-                            {'Leaders'}
-                        </a>
-                        <a className={'seg'} data-tab={'player'} href={'/stats/player'}>
-                            {'Player Stats'}
-                        </a>
-                        <a className={'seg'} data-tab={'team'} href={'/stats/team'}>
-                            {'Team Stats'}
-                        </a>
+                        {TAB_LINKS.map(link => (
+                            <a
+                                key={link.tab}
+                                className={'seg'}
+                                data-tab={link.tab}
+                                href={link.href}
+                                aria-current={link.tab === tab ? 'page' : undefined}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
                     </nav>
 
-                    <section data-tab-panel={'team'} className={'panel'}>
+                    <section data-tab-panel={'team'} className={'panel'} hidden={tab !== 'team'}>
                         <PanelHeader tab={'team'} title={'Team Stats'} />
                         <StatTable tab={'team'} withEmptyState />
                         <div className={'foot'} data-foot={'team'}>
@@ -47,7 +57,7 @@ export function StatsPanels() {
                         </div>
                     </section>
 
-                    <section data-tab-panel={'player'} className={'panel'} hidden>
+                    <section data-tab-panel={'player'} className={'panel'} hidden={tab !== 'player'}>
                         <PanelHeader tab={'player'} title={'Player Stats'} />
                         <StatTable tab={'player'} />
                         <div className={'foot'}>
@@ -70,7 +80,7 @@ export function StatsPanels() {
                         </div>
                     </section>
 
-                    <section data-tab-panel={'leaders'} className={'panel'} hidden>
+                    <section data-tab-panel={'leaders'} className={'panel'} hidden={tab !== 'leaders'}>
                         <PanelHeader tab={'leaders'} title={'Leaders'} />
                         <div className={'leaders'} data-leaders=''></div>
                         <div className={'foot'}>
