@@ -96,7 +96,7 @@ export const STATS: StatsData = {
             name: "Breeze",
             primary: "#b52f72",
             secondary: "#4b3970",
-            logo: "/assets/asset-4.png",
+            logo: "/assets/clubs/breeze.webp",
             url: "https://www.unrivaled.basketball/breeze"
         },
         hive: {
@@ -104,7 +104,7 @@ export const STATS: StatsData = {
             name: "Hive",
             primary: "#ffc728",
             secondary: "#515659",
-            logo: "/assets/asset-5.png",
+            logo: "/assets/clubs/hive.webp",
             url: "https://www.unrivaled.basketball/hive"
         },
         laces: {
@@ -112,7 +112,7 @@ export const STATS: StatsData = {
             name: "Laces",
             primary: "#76b1a1",
             secondary: "#c34f54",
-            logo: "/assets/asset-6.png",
+            logo: "/assets/clubs/laces.webp",
             url: "https://www.unrivaled.basketball/laces"
         },
         "lunar-owls": {
@@ -120,7 +120,7 @@ export const STATS: StatsData = {
             name: "Lunar Owls",
             primary: "#40347d",
             secondary: "#f4e087",
-            logo: "/assets/asset-7.png",
+            logo: "/assets/clubs/lunar-owls.webp",
             url: "https://www.unrivaled.basketball/lunar-owls"
         },
         mist: {
@@ -128,7 +128,7 @@ export const STATS: StatsData = {
             name: "Mist",
             primary: "#063860",
             secondary: "#a3d3e7",
-            logo: "/assets/asset-8.png",
+            logo: "/assets/clubs/mist.webp",
             url: "https://www.unrivaled.basketball/mist"
         },
         phantom: {
@@ -136,7 +136,7 @@ export const STATS: StatsData = {
             name: "Phantom",
             primary: "#000000",
             secondary: "#449449",
-            logo: "/assets/asset-9.png",
+            logo: "/assets/clubs/phantom.webp",
             url: "https://www.unrivaled.basketball/phantom"
         },
         rose: {
@@ -144,7 +144,7 @@ export const STATS: StatsData = {
             name: "Rose",
             primary: "#1b5750",
             secondary: "#dda493",
-            logo: "/assets/asset-10.png",
+            logo: "/assets/clubs/rose.webp",
             url: "https://www.unrivaled.basketball/rose"
         },
         vinyl: {
@@ -152,7 +152,7 @@ export const STATS: StatsData = {
             name: "Vinyl",
             primary: "#820234",
             secondary: "#1e9cbf",
-            logo: "/assets/asset-11.png",
+            logo: "/assets/clubs/vinyl.webp",
             url: "https://www.unrivaled.basketball/vinyl"
         }
     },

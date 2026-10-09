@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Sequel 100 Black';
-    src: url(/assets/asset-1.woff) format('woff');
+    src: url(/assets/fonts/sequel-100-black.woff) format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
 :root {
-    --unrivaled-icon: url('/assets/asset-2.svg');
-    --unrivaled-wordmark: url('/assets/asset-3.png');
+    --unrivaled-icon: url('/assets/brand/unrivaled-icon.svg');
+    --unrivaled-wordmark: url('/assets/brand/unrivaled-wordmark.png');
 }
 /* ==================================================================
    Shared foundation for the /stats/team mocks.
