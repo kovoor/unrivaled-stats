@@ -93,6 +93,10 @@
         rgba(147, 82, 217, 0.4) 65%,
         transparent
     );
+    /* The footer's glow: a sky and a purple pool of light under its hairline */
+    --footer-glow:
+        radial-gradient(50% 100% at 38% 0%, rgba(93, 195, 236, 0.07), transparent 75%),
+        radial-gradient(50% 100% at 62% 0%, rgba(89, 26, 126, 0.18), transparent 75%);
 
     --nav-h: 60px;
     --ease: cubic-bezier(0.2, 0.7, 0.2, 1);

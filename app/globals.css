@@ -12,6 +12,5 @@
 @import './styles/theme.css';
 @import './styles/base.css' layer(base);
 @import './styles/site-nav.css' layer(components);
-@import './styles/site-footer.css' layer(components);
 @import './styles/review.css' layer(components);
 @import './styles/stats.css' layer(components);
