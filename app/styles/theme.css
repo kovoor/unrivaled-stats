@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Sequel 100 Black';
+    src: url(/assets/asset-1.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+:root {
+    --unrivaled-icon: url('/assets/asset-2.svg');
+    --unrivaled-wordmark: url('/assets/asset-3.png');
+}
+/* ==================================================================
+   Shared foundation for the /stats/team mocks.
+   Mirrors apps/web globals.css where it matters: the ground, the ink,
+   the palette (same variable names as globals.css, so a port keeps
+   them), Roboto, line-height 1, the 60px site nav and the footer.
+
+   The real site sets `* { letter-spacing: 0.075em }`. The /arena page
+   zeroes it on its root and sets tracking per element; these mocks do
+   the same (tracking is 0 here unless an element sets its own).
+   ================================================================== */
+/* Tailwind reads @theme: each token below is still a plain CSS variable on :root (so var(--color-…) keeps
+   working), and also becomes a utility such as text-white-60, bg-black-100, or font-heading. `static` keeps
+   every variable even when no utility uses it yet. Tailwind's default palette and breakpoints are cleared, so
+   only the brand's exist; the breakpoints are apps/web's (--sm 768, --md 1024, --lg 1200). */
+@theme static {
+    --color-*: initial;
+    --breakpoint-*: initial;
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 1024px;
+    --breakpoint-lg: 1200px;
+
+    /* Ground and ink */
+    --color-black-100: #17181c;
+    --color-black-90: rgba(23, 24, 28, 0.9);
+    --color-black-80: rgba(23, 24, 28, 0.8);
+    --color-black-60: rgba(23, 24, 28, 0.6);
+    --color-white-100: #f4f4f4;
+    --color-white-92: rgba(244, 244, 244, 0.92);
+    --color-white-90: rgba(244, 244, 244, 0.9);
+    --color-white-80: rgba(244, 244, 244, 0.8);
+    --color-white-70: rgba(244, 244, 244, 0.7);
+    --color-white-60: rgba(244, 244, 244, 0.6);
+    --color-white-50: rgba(244, 244, 244, 0.5);
+    --color-white-40: rgba(244, 244, 244, 0.4);
+    --color-white-33: rgba(244, 244, 244, 0.33);
+    --color-white-25: rgba(244, 244, 244, 0.25);
+    --color-white-15: rgba(244, 244, 244, 0.15);
+    --color-white-10: rgba(244, 244, 244, 0.1);
+    --color-white-7: rgba(244, 244, 244, 0.07);
+    --color-white-5: rgba(244, 244, 244, 0.05);
+    --color-white-2: rgba(244, 244, 244, 0.02);
+    --color-slate-100: #191919;
+    --color-grey-100: #212121;
+    --color-light-grey-100: #3a3a3a;
+    --color-dark-blue-100: #1d1e26;
+
+    /* Accents (globals.css names) */
+    --color-sky-100: #5dc3ec;
+    --color-blue-100: #0090ca;
+    --color-light-blue-100: #5490ec;
+    --color-purple-100: #8502d6;
+    --color-brand-purple: #591a7e;
+    --color-light-purple-100: #c472fb;
+    --color-violet-100: #6b4a9e;
+    --color-periwinkle-100: #8a8df2;
+    --color-amethyst-100: #a65cf0;
+    --color-mint-100: #63e6be;
+    --color-gold-100: #ffc728;
+    --color-red-100: #f25c54;
+    --color-green-100: #7dd23a;
+    --color-midnight-100: #141a38;
+    --color-night-100: #0c1024;
+    --color-eggplant-100: #221c33;
+
+    /* The four theme fonts, named for their job */
+    --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-heading: 'Roboto Condensed', 'Roboto', system-ui, sans-serif;
+    --font-marquee: 'Sequel 100 Black', 'Roboto', system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* Not utility tokens: gradients are not colors to Tailwind, and these are read only by the CSS below. */
+:root {
+    /* Brand gradients (globals.css) and the faint hairline the footer and /arena use */
+    --color-unrivaled: linear-gradient(to bottom right, #5dc3ec, #591a7e);
+    --color-unrivaled-right: linear-gradient(to right, #5dc3ec, #591a7e);
+    --color-unrivaled-20: linear-gradient(to bottom right, rgba(93, 195, 236, 0.2), rgba(127, 17, 224, 0.2));
+    --hairline: linear-gradient(
+        to right,
+        transparent,
+        rgba(93, 195, 236, 0.35) 35%,
+        rgba(147, 82, 217, 0.4) 65%,
+        transparent
+    );
+
+    --nav-h: 60px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

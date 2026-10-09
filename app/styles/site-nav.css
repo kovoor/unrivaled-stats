@@ -1,0 +1,103 @@
+/* ------------------------------------------------------------------
+   Site nav (apps/web dynamic-nav): 60px, sticky, 90% black with blur,
+   the shield hangs below the bar at the center, signed in as "SP".
+   ------------------------------------------------------------------ */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background: var(--color-black-90);
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--color-light-grey-100);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.site-nav__links {
+    display: none;
+    align-items: center;
+    height: 100%;
+}
+.site-nav__links a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+.site-nav__links a:hover {
+    color: #fff;
+}
+.site-nav__links a[data-hint]::before {
+    content: attr(data-hint);
+    position: absolute;
+    top: 12px;
+    right: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-light-blue-100);
+    text-shadow: 0 0 8px rgba(122, 63, 255, 0.7);
+}
+.site-nav__icon {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 67px;
+    background: var(--unrivaled-icon) center / contain no-repeat;
+}
+.site-nav__right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.site-nav__me {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin: 0 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(58, 58, 58, 0.5), rgba(33, 33, 33, 0.5));
+    border: 2px solid var(--color-white-10);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.075em;
+    user-select: none;
+}
+.site-nav__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 56px;
+    height: 100%;
+    padding: 0 18px;
+}
+.site-nav__burger span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-white-100);
+}
+@media (min-width: 1024px) {
+    .site-nav {
+        padding: 0 36px;
+    }
+    .site-nav__links {
+        display: flex;
+    }
+    .site-nav__burger {
+        display: none;
+    }
+}

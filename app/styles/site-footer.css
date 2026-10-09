@@ -1,0 +1,87 @@
+/* ------------------------------------------------------------------
+   Site footer (apps/web footer).
+   ------------------------------------------------------------------ */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 48px 24px 32px;
+    margin-top: 72px;
+}
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--hairline);
+    pointer-events: none;
+}
+.site-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1100px, 170vw);
+    height: 300px;
+    transform: translateX(-50%);
+    background:
+        radial-gradient(50% 100% at 38% 0%, rgba(93, 195, 236, 0.07), transparent 75%),
+        radial-gradient(50% 100% at 62% 0%, rgba(89, 26, 126, 0.18), transparent 75%);
+    pointer-events: none;
+}
+.site-footer__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.site-footer__wordmark {
+    width: 300px;
+    max-width: 80%;
+    aspect-ratio: 2000 / 223;
+    background: var(--unrivaled-wordmark) center / contain no-repeat;
+    opacity: 0.7;
+}
+.site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin-top: 32px;
+}
+.site-footer__nav a {
+    padding: 4px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-white-60);
+}
+.site-footer__nav a:hover {
+    color: var(--color-white-100);
+}
+.site-footer__rule {
+    width: 64px;
+    height: 1px;
+    margin-top: 36px;
+    background: var(--color-white-15);
+}
+.site-footer__copy {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: var(--color-white-40);
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .site-footer {
+        padding: 64px 48px 40px;
+        margin-top: 96px;
+    }
+}
